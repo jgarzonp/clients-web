@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.jgarzon.clients",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "ClientsWeb",
+    "packageName": "com.jgarzon.clients",
+    "packageFolder": "com/jgarzon/clients",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "M2VjZjY5MDQyMGI2MDdhYThkNzIxNDE4NzQ5MjJiNDFmY2UzYTJkYjI1ODIwNjJhZTIzY2M5NDMwOWM3ZGM0ODI4NGM2YWVlNzE3YzFmZjNhNzU5OWM1MDBiZDAxMDM3YTRjNGU2MDYyMGM2NGI5ZmY4ZTRhYzI3MDI3ZjgzZTc=",
+    "clientFramework": "angularX",
+    "clientTheme": "materia",
+    "clientThemeVariant": "light",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": ["es"]
+  }
+}

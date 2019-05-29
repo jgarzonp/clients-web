@@ -1,0 +1,11 @@
+version: '2'
+services:
+  clientsweb-postgresql:
+    image: postgres:11.2
+    # volumes:
+    #     - ~/volumes/jhipster/ClientsWeb/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=ClientsWeb
+      - POSTGRES_PASSWORD=
+    ports:
+      - 5432:5432
