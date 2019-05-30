@@ -1,6 +1,8 @@
 package com.jgarzon.clients.service;
 
+import com.jgarzon.clients.domain.Client;
 import com.jgarzon.clients.service.dto.ClientDTO;
+import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,10 +23,10 @@ public interface ClientService {
     /**
      * Get all the clients.
      *
+     * @param specification Spring Data specification to manage the filters to query the records
      * @return the list of entities.
      */
-    List<ClientDTO> findAll();
-
+    List<ClientDTO> findAll(Specification<Client> specification);
 
     /**
      * Get the "id" client.

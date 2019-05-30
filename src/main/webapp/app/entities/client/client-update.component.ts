@@ -28,6 +28,7 @@ export class ClientUpdateComponent implements OnInit {
   ngOnInit() {
     this.isSaving = false;
     this.activatedRoute.data.subscribe(({ client }) => {
+      console.log(client);
       this.updateForm(client);
       this.client = client;
     });

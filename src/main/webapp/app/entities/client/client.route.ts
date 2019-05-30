@@ -6,7 +6,7 @@ import { filter, map } from 'rxjs/operators';
 import { Client, IClient } from 'app/shared/model/client.model';
 import { ClientService } from './client.service';
 import { ClientComponent } from './client.component';
-import { ClientUpdateComponent } from './client-update.component';
+import { ClientPopupComponent } from './client-dialog.component';
 
 @Injectable({ providedIn: 'root' })
 export class ClientResolve implements Resolve<IClient> {
@@ -33,37 +33,26 @@ export const clientRoute: Routes = [
       pageTitle: 'clientsWebApp.client.home.title'
     },
     canActivate: []
-  },
-  {
-    path: 'new',
-    component: ClientUpdateComponent,
-    resolve: {
-      client: ClientResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'clientsWebApp.client.home.title'
-    },
-    canActivate: []
-  },
-  {
-    path: ':id/edit',
-    component: ClientUpdateComponent,
-    resolve: {
-      client: ClientResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'clientsWebApp.client.home.title'
-    },
-    canActivate: []
   }
 ];
 
 export const clientPopupRoute: Routes = [
   {
-    path: ':id/delete',
-    component: ClientUpdateComponent,
+    path: 'new',
+    component: ClientPopupComponent,
+    resolve: {
+      client: ClientResolve
+    },
+    data: {
+      authorities: ['ROLE_USER'],
+      pageTitle: 'clientsWebApp.client.home.title'
+    },
+    canActivate: [],
+    outlet: 'popup'
+  },
+  {
+    path: ':id/edit',
+    component: ClientPopupComponent,
     resolve: {
       client: ClientResolve
     },

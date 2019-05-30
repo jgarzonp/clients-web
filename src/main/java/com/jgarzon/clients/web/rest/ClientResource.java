@@ -1,9 +1,9 @@
 package com.jgarzon.clients.web.rest;
 
 import com.jgarzon.clients.service.ClientService;
-import com.jgarzon.clients.web.rest.errors.BadRequestAlertException;
 import com.jgarzon.clients.service.dto.ClientDTO;
-
+import com.jgarzon.clients.web.rest.errors.BadRequestAlertException;
+import com.jgarzon.clients.web.rest.vm.ClientVM;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -26,14 +25,11 @@ import java.util.Optional;
 @RequestMapping("/api")
 public class ClientResource {
 
-    private final Logger log = LoggerFactory.getLogger(ClientResource.class);
-
     private static final String ENTITY_NAME = "client";
-
+    private final Logger log = LoggerFactory.getLogger(ClientResource.class);
+    private final ClientService clientService;
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
-
-    private final ClientService clientService;
 
     public ClientResource(ClientService clientService) {
         this.clientService = clientService;
@@ -43,7 +39,8 @@ public class ClientResource {
      * {@code POST  /clients} : Create a new client.
      *
      * @param clientDTO the clientDTO to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new clientDTO, or with status {@code 400 (Bad Request)} if the client has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new clientDTO, or with status {@code 400 (Bad Request)}
+     *         if the client has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/clients")
@@ -62,13 +59,11 @@ public class ClientResource {
      * {@code PUT  /clients} : Updates an existing client.
      *
      * @param clientDTO the clientDTO to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated clientDTO,
-     * or with status {@code 400 (Bad Request)} if the clientDTO is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the clientDTO couldn't be updated.
-     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated clientDTO, or with status {@code 400 (Bad Request)}
+     *         if the clientDTO is not valid, or with status {@code 500 (Internal Server Error)} if the clientDTO couldn't be updated.
      */
     @PutMapping("/clients")
-    public ResponseEntity<ClientDTO> updateClient(@Valid @RequestBody ClientDTO clientDTO) throws URISyntaxException {
+    public ResponseEntity<ClientDTO> updateClient(@Valid @RequestBody ClientDTO clientDTO) {
         log.debug("REST request to update Client : {}", clientDTO);
         if (clientDTO.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -85,9 +80,9 @@ public class ClientResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of clients in body.
      */
     @GetMapping("/clients")
-    public List<ClientDTO> getAllClients() {
+    public List<ClientDTO> getAllClients(ClientVM filters) {
         log.debug("REST request to get all Clients");
-        return clientService.findAll();
+        return clientService.findAll(filters.specification());
     }
 
     /**

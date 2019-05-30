@@ -8,6 +8,7 @@ import com.jgarzon.clients.service.mapper.ClientMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -60,9 +61,9 @@ public class ClientServiceImpl implements ClientService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<ClientDTO> findAll() {
+    public List<ClientDTO> findAll(Specification<Client> specification) {
         LOG.debug("Request to get all Clients");
-        return clientRepository.findAll().stream().map(clientMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
+        return clientRepository.findAll(specification).stream().map(clientMapper::toDto).collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**

@@ -1,15 +1,13 @@
 package com.jgarzon.clients.domain;
 
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.ZonedDateTime;
-import java.util.Objects;
 
 /**
  * A Client.
@@ -44,7 +42,7 @@ public class Client implements Serializable {
     private String phone;
 
     @NotNull
-    @Column(name = "data_added", nullable = false)
+    @Column(name = "data_added", nullable = false, updatable = false)
     private ZonedDateTime dataAdded;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -140,13 +138,7 @@ public class Client implements Serializable {
 
     @Override
     public String toString() {
-        return "Client{" +
-            "id=" + getId() +
-            ", sharedKey='" + getSharedKey() + "'" +
-            ", businessId='" + getBusinessId() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", phone='" + getPhone() + "'" +
-            ", dataAdded='" + getDataAdded() + "'" +
-            "}";
+        return "Client{" + "id=" + getId() + ", sharedKey='" + getSharedKey() + "'" + ", businessId='" + getBusinessId() + "'" + ", email='" +
+            getEmail() + "'" + ", phone='" + getPhone() + "'" + ", dataAdded='" + getDataAdded() + "'" + "}";
     }
 }

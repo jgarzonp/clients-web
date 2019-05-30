@@ -16,7 +16,15 @@ import { ClientsWebHomeModule } from 'app/home';
 import { ClientsWebEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { ActiveMenuDirective, ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
+import {
+  ActiveMenuDirective,
+  ErrorComponent,
+  FooterComponent,
+  JhiMainComponent,
+  NavbarComponent,
+  SidenavComponent,
+  PageRibbonComponent
+} from './layouts';
 
 @NgModule({
   imports: [
@@ -36,7 +44,15 @@ import { ActiveMenuDirective, ErrorComponent, FooterComponent, JhiMainComponent,
     ClientsWebEntityModule,
     ClientsWebAppRoutingModule
   ],
-  declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
+  declarations: [
+    JhiMainComponent,
+    NavbarComponent,
+    SidenavComponent,
+    ErrorComponent,
+    PageRibbonComponent,
+    ActiveMenuDirective,
+    FooterComponent
+  ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

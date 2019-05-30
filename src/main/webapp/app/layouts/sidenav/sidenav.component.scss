@@ -1,0 +1,24 @@
+#sidenav .list-group-item {
+  color: #2196f3;
+  border-radius: 0;
+  background-color: #fff;
+  border-left: 0;
+  border-right: 0;
+  border-color: #fff;
+  white-space: nowrap;
+}
+
+#sidenav .list-group-item > a {
+  font-weight: normal;
+  text-decoration: none;
+}
+
+#sidenav .list-group-item.active > a {
+  z-index: 2;
+  color: #2196f3;
+  font-weight: bold;
+}
+
+#sidenav .list-group-item.active > a > span > span {
+  font-size: 1.3rem;
+}

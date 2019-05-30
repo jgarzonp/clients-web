@@ -1,15 +1,41 @@
 <div>
     <div class="row col-sm-12">
         <h2 id="page-heading">
-            <button id="jh-create-entity" class="btn btn-primary float-left jh-create-entity create-client" [routerLink]="['/client/new']">
+            <button id="jh-create-entity" class="btn btn-primary float-left jh-create-entity create-client"
+                    [routerLink]="['/client', { outlets: { popup: ['new'] } }]">
                 <fa-icon [icon]="'plus'"></fa-icon>
-                <span  jhiTranslate="clientsWebApp.client.home.createLabel">
+                <span jhiTranslate="clientsWebApp.client.home.createLabel">
                 New
                 </span>
             </button>
         </h2>
     </div>
     <jhi-alert></jhi-alert>
+    <br/>
+    <div class="row">
+        <div class="col-md-5 col-sm-12">
+            <form name="sharedKeyForm" role="form" novalidate (ngSubmit)="filterBySharedKey()" [formGroup]="sharedKeyForm">
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" name="sharedKey" id="field_sharedKey" formControlName="sharedKey"
+                                   placeholder="Enter shared key" aria-label="Enter shared key" aria-describedby="button-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-default" type="submit" id="button-addon2" [disabled]="sharedKeyForm.invalid">Search</button>
+                            </div>
+                        </div>
+                        <div
+                            *ngIf="sharedKeyForm.get('sharedKey').invalid && (sharedKeyForm.get('sharedKey').dirty || sharedKeyForm.get('sharedKey').touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="sharedKeyForm.get('sharedKey').errors.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <br/>
     <div class="row col-sm-12">
         <h2 class="font-weight-bold">
@@ -20,12 +46,12 @@
         <table class="table table-striped">
             <thead>
             <tr>
-            <th><span jhiTranslate="clientsWebApp.client.sharedKey">Shared Key</span></th>
-            <th><span jhiTranslate="clientsWebApp.client.businessId">Business Id</span></th>
-            <th><span jhiTranslate="clientsWebApp.client.email">Email</span></th>
-            <th><span jhiTranslate="clientsWebApp.client.phone">Phone</span></th>
-            <th><span jhiTranslate="clientsWebApp.client.dataAdded">Data Added</span></th>
-            <th></th>
+                <th><span jhiTranslate="clientsWebApp.client.sharedKey">Shared Key</span></th>
+                <th><span jhiTranslate="clientsWebApp.client.businessId">Business Id</span></th>
+                <th><span jhiTranslate="clientsWebApp.client.email">Email</span></th>
+                <th><span jhiTranslate="clientsWebApp.client.phone">Phone</span></th>
+                <th><span jhiTranslate="clientsWebApp.client.dataAdded">Data Added</span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -38,7 +64,7 @@
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"
-                                [routerLink]="['/client', client.id, 'edit']"
+                                [routerLink]="['/client', {outlets: { popup: [client.id, 'edit'] } }]"
                                 class="btn btn-default btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                         </button>

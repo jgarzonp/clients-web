@@ -6,6 +6,7 @@ import { JhiAlertService, JhiEventManager } from 'ng-jhipster';
 
 import { IClient } from 'app/shared/model/client.model';
 import { ClientService } from './client.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'jhi-client',
@@ -13,18 +14,25 @@ import { ClientService } from './client.service';
 })
 export class ClientComponent implements OnInit, OnDestroy {
   clients: IClient[];
-  currentAccount: any;
   eventSubscriber: Subscription;
+
+  sharedKey: string;
+  filters: Array<any>;
+
+  sharedKeyForm = this.fb.group({
+    sharedKey: [null]
+  });
 
   constructor(
     protected clientService: ClientService,
     protected jhiAlertService: JhiAlertService,
-    protected eventManager: JhiEventManager
+    protected eventManager: JhiEventManager,
+    private fb: FormBuilder
   ) {}
 
   loadAll() {
     this.clientService
-      .query()
+      .query({ filters: this.filters })
       .pipe(
         filter((res: HttpResponse<IClient[]>) => res.ok),
         map((res: HttpResponse<IClient[]>) => res.body)
@@ -37,7 +45,18 @@ export class ClientComponent implements OnInit, OnDestroy {
       );
   }
 
+  filterBySharedKey() {
+    this.filters = [];
+    this.sharedKey = this.sharedKeyForm.get(['sharedKey']).value;
+    if (this.sharedKey) {
+      this.filters.push({ key: 'sharedKey', value: this.sharedKey });
+    }
+    this.loadAll();
+  }
+
   ngOnInit() {
+    this.filters = [];
+    this.sharedKey = null;
     this.loadAll();
     this.registerChangeInClients();
   }
