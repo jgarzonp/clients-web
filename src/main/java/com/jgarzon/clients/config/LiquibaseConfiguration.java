@@ -19,7 +19,7 @@ import java.util.concurrent.Executor;
 @Configuration
 public class LiquibaseConfiguration {
 
-    private final Logger log = LoggerFactory.getLogger(LiquibaseConfiguration.class);
+    private static final Logger LOG = LoggerFactory.getLogger(LiquibaseConfiguration.class);
 
     private final Environment env;
 
@@ -31,8 +31,7 @@ public class LiquibaseConfiguration {
     }
 
     @Bean
-    public SpringLiquibase liquibase(@Qualifier("taskExecutor") Executor executor,
-            DataSource dataSource, LiquibaseProperties liquibaseProperties) {
+    public SpringLiquibase liquibase(@Qualifier("taskExecutor") Executor executor, DataSource dataSource, LiquibaseProperties liquibaseProperties) {
 
         // Use liquibase.integration.spring.SpringLiquibase if you don't want Liquibase to start asynchronously
         SpringLiquibase liquibase = new AsyncSpringLiquibase(executor, env);
@@ -46,7 +45,7 @@ public class LiquibaseConfiguration {
             liquibase.setShouldRun(false);
         } else {
             liquibase.setShouldRun(liquibaseProperties.isEnabled());
-            log.debug("Configuring Liquibase");
+            LOG.debug("Configuring Liquibase");
         }
         return liquibase;
     }

@@ -1,0 +1,21 @@
+{
+  "clientsWebApp": {
+    "client": {
+      "home": {
+        "title": "Clients",
+        "createLabel": "New",
+        "createOrEditLabel": "Create New Client"
+      },
+      "created": "A new Client was created with ID {{ param }}",
+      "updated": "The Client with ID {{ param }} was updated",
+      "detail": {
+        "title": "Client"
+      },
+      "sharedKey": "Shared Key",
+      "businessId": "Name",
+      "email": "E-mail",
+      "phone": "Phone",
+      "dataAdded": "Data Added"
+    }
+  }
+}

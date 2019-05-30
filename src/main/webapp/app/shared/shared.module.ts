@@ -1,11 +1,11 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ClientsWebSharedLibsModule, ClientsWebSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective } from './';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { ClientsWebSharedCommonModule, ClientsWebSharedLibsModule } from './';
 
 @NgModule({
   imports: [ClientsWebSharedLibsModule, ClientsWebSharedCommonModule],
-  declarations: [JhiLoginModalComponent, HasAnyAuthorityDirective],
-  entryComponents: [JhiLoginModalComponent],
-  exports: [ClientsWebSharedCommonModule, JhiLoginModalComponent, HasAnyAuthorityDirective],
+  declarations: [],
+  entryComponents: [],
+  exports: [ClientsWebSharedCommonModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ClientsWebSharedModule {

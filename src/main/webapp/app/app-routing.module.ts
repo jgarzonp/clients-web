@@ -6,18 +6,7 @@ import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 const LAYOUT_ROUTES = [navbarRoute, ...errorRoute];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(
-      [
-        {
-          path: 'admin',
-          loadChildren: './admin/admin.module#ClientsWebAdminModule'
-        },
-        ...LAYOUT_ROUTES
-      ],
-      { enableTracing: DEBUG_INFO_ENABLED }
-    )
-  ],
+  imports: [RouterModule.forRoot([...LAYOUT_ROUTES], { enableTracing: DEBUG_INFO_ENABLED, useHash: true })],
   exports: [RouterModule]
 })
 export class ClientsWebAppRoutingModule {}

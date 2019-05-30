@@ -1,11 +1,11 @@
 version: '2'
 services:
-  clientsweb-postgresql:
-    image: postgres:11.2
-    # volumes:
-    #     - ~/volumes/jhipster/ClientsWeb/postgresql/:/var/lib/postgresql/data/
+  postgresql:
+    container_name: postgresql
+    image: postgres:11-alpine
     environment:
-      - POSTGRES_USER=ClientsWeb
-      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=alianza
+      - POSTGRES_USER=alianza
+      - POSTGRES_PASSWORD=alianza
     ports:
-      - 5432:5432
+      - 5555:5432

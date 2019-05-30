@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 
-import { ErrorComponent } from './error.component';
+import { ErrorComponent } from 'app/layouts';
 
 export const errorRoute: Routes = [
   {
@@ -9,15 +9,6 @@ export const errorRoute: Routes = [
     data: {
       authorities: [],
       pageTitle: 'error.title'
-    }
-  },
-  {
-    path: 'accessdenied',
-    component: ErrorComponent,
-    data: {
-      authorities: [],
-      pageTitle: 'error.title',
-      error403: true
     }
   },
   {

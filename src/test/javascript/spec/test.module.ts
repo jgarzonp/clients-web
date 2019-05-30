@@ -1,13 +1,12 @@
 import { DatePipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NgModule, ElementRef, Renderer } from '@angular/core';
+import { ElementRef, NgModule, Renderer } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiLanguageService, JhiDataUtils, JhiDateUtils, JhiEventManager, JhiAlertService, JhiParseLinks } from 'ng-jhipster';
+import { JhiAlertService, JhiDataUtils, JhiDateUtils, JhiEventManager, JhiLanguageService, JhiParseLinks } from 'ng-jhipster';
 
-import { MockLanguageService, MockLanguageHelper } from './helpers/mock-language.service';
-import { JhiLanguageHelper, AccountService, LoginModalService } from 'app/core';
-import { MockAccountService } from './helpers/mock-account.service';
+import { MockLanguageHelper, MockLanguageService } from './helpers/mock-language.service';
+import { JhiLanguageHelper } from 'app/core';
 import { MockActivatedRoute, MockRouter } from './helpers/mock-route.service';
 import { MockActiveModal } from './helpers/mock-active-modal.service';
 import { MockEventManager } from './helpers/mock-event-manager.service';
@@ -41,14 +40,6 @@ import { MockEventManager } from './helpers/mock-event-manager.service';
     {
       provide: Router,
       useClass: MockRouter
-    },
-    {
-      provide: AccountService,
-      useClass: MockAccountService
-    },
-    {
-      provide: LoginModalService,
-      useValue: null
     },
     {
       provide: ElementRef,

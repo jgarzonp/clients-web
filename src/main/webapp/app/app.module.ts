@@ -7,19 +7,16 @@ import { NgbDatepickerConfig } from '@ng-bootstrap/ng-bootstrap';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 import { NgJhipsterModule } from 'ng-jhipster';
 
-import { AuthInterceptor } from './blocks/interceptor/auth.interceptor';
-import { AuthExpiredInterceptor } from './blocks/interceptor/auth-expired.interceptor';
 import { ErrorHandlerInterceptor } from './blocks/interceptor/errorhandler.interceptor';
 import { NotificationInterceptor } from './blocks/interceptor/notification.interceptor';
 import { ClientsWebSharedModule } from 'app/shared';
 import { ClientsWebCoreModule } from 'app/core';
 import { ClientsWebAppRoutingModule } from './app-routing.module';
-import { ClientsWebHomeModule } from './home/home.module';
-import { ClientsWebAccountModule } from './account/account.module';
+import { ClientsWebHomeModule } from 'app/home';
 import { ClientsWebEntityModule } from './entities/entity.module';
 import * as moment from 'moment';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
-import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent, ActiveMenuDirective, ErrorComponent } from './layouts';
+import { ActiveMenuDirective, ErrorComponent, FooterComponent, JhiMainComponent, NavbarComponent, PageRibbonComponent } from './layouts';
 
 @NgModule({
   imports: [
@@ -35,23 +32,12 @@ import { JhiMainComponent, NavbarComponent, FooterComponent, PageRibbonComponent
     ClientsWebSharedModule.forRoot(),
     ClientsWebCoreModule,
     ClientsWebHomeModule,
-    ClientsWebAccountModule,
     // jhipster-needle-angular-add-module JHipster will add new module here
     ClientsWebEntityModule,
     ClientsWebAppRoutingModule
   ],
   declarations: [JhiMainComponent, NavbarComponent, ErrorComponent, PageRibbonComponent, ActiveMenuDirective, FooterComponent],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthExpiredInterceptor,
-      multi: true
-    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorHandlerInterceptor,
